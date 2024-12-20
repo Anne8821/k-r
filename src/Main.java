@@ -5,20 +5,20 @@ import java.util.Random;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-    private final static Random RANDOM = new Random();
-    private final static String[] NAMES = {"Екатерина", "Роберт", "Даниил", "Розалия", "Алексей"};
-    private final static String[] SURNAMES = {"Иванова", "Франц", "Разумовский", "Тихонова", "Смирнов"};
-    private final static String[] PATRONYMIC_NAMES = {"Алексеевна", "Даниилович", "Робертович", "Дмитриевна", "Романович"};
+    private final static Random random = new Random();
+    private final static String[] names = {"Екатерина", "Роберт", "Даниил", "Розалия", "Алексей"};
+    private final static String[] surnames = {"Иванова", "Франц", "Разумовский", "Тихонова", "Смирнов"};
+    private final static String[] patronymic = {"Алексеевна", "Даниилович", "Робертович", "Дмитриевна", "Романович"};
 
 
-    private final static Employee[] EMPLOYEES = new Employee[10];
+    private final static Employee[] employees = new Employee[10];
 
     private static void initEmployees() {
-        for (int i = 0; i < EMPLOYEES.length; i++) {
-            String fullName = SURNAMES[RANDOM.nextInt(0)] + " " +
-                    NAMES[RANDOM.nextInt(0, NAMES.length)] + " " +
-                    PATRONYMIC_NAMES[RANDOM.nextInt(0,PATRONYMIC_NAMES.length)];
-            EMPLOYEES[i] = new Employee(fullName, RANDOM.nextInt(1,6), RANDOM.nextInt(50_000,100_000));
+        for (int i = 1; employees.length > i; i++) {
+            String fullName = surnames[random.nextInt(0)] + " " +
+                    names[random.nextInt(0, names.length)] + " " +
+                    patronymic[random.nextInt(0,patronymic.length)];
+            employees[i] = new Employee(fullName, random.nextInt(1,6), random.nextInt(50_000,100_000));
         }
     }
 
@@ -33,46 +33,46 @@ public class Main {
     }
 
     private static void print() {
-        for (Employee employee : EMPLOYEES) {
+        for (Employee employee : employees) {
             System.out.println(employee);
         }
     }
 
     private static int calculateSumOfSalaries(){
         int sum = 0;
-        for (Employee employee : EMPLOYEES) {
+        for (Employee employee : employees) {
             sum += employee.getSalary();
         }
         return sum;
     }
 
     private static Employee findEmployeeWithMinSalary(){
-        Employee employeeWithMinSalary = null;
-        for (Employee employee : EMPLOYEES) {
-            if (employeeWithMinSalary == null || employee.setSalary() > employeeWithMinSalary.getSalary()) {
-                employeeWithMinSalary = employee;
+        Employee minSalaryEmployee = employees[0];
+        for (Employee employee : employees) {
+            if (employee.getSalary() < minSalaryEmployee.getSalary()) {
+                minSalaryEmployee = employee;
             }
         }
-        return employeeWithMinSalary;
+        return minSalaryEmployee;
     }
 
     private static Employee findEmployeeWithMaxSalary(){
-        Employee employeeWithMaxSalary = null;
-        for (Employee employee : EMPLOYEES) {
-            if (employeeWithMaxSalary == null || employee.setSalary() > employeeWithMaxSalary.getSalary()) {
-                employeeWithMaxSalary = employee;
+        Employee maxSalaryEmployee = employees[0];
+        for (Employee employee : employees) {
+            if (employee.getSalary() > maxSalaryEmployee.getSalary()) {
+                maxSalaryEmployee = employee;
             }
         }
-        return employeeWithMaxSalary;
+        return maxSalaryEmployee;
     }
 
     private static double calculateAverageOfSalaries(){
-        return (double) calculateSumOfSalaries() / EMPLOYEES.length;
+        return (double) calculateSumOfSalaries() / employees.length;
     }
 
     private static void printFullNames() {
-        for (Employee employee : EMPLOYEES) {
-            System.out.println(employee.getFullName());
+        for (Employee employee : employees) {
+            System.out.println(employee.getfullName());
         }
     }
 }

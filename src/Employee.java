@@ -1,8 +1,12 @@
+import java.util.Objects;
+
 public class Employee {
 
     private static int idGenerator = 1;
 
     private final String fullName;
+    //private final String surnames;
+    //private String patronymic;
     private int department;
     private int salary;
     private final int id;
@@ -10,6 +14,8 @@ public class Employee {
     public Employee(String fullName, int department, int salary) {
         id = idGenerator++;
         this.fullName = fullName;
+        //    this.surnames = surnames;
+        //  this.patronymic = patronymic;
         this.department = department;
         this.salary = salary;
     }
@@ -22,7 +28,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getFullName() {
+    public String getfullName() {
         return fullName;
     }
 
@@ -38,12 +44,30 @@ public class Employee {
         return id;
     }
 
+
     @Override
     public String toString() {
         return "id=" + id +
-                ", fullName='" + fullName + '\'' +
+                ", name='" + fullName + '\'' +
                 ", department=" + department +
                 ", salary=" + salary;
-
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return salary == employee.salary &&
+                department == employee.salary &&
+                id == employee.id &&
+                Objects.equals(fullName, employee.fullName);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, salary, department, id);
+    }
+
 }
