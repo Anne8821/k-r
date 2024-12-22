@@ -15,7 +15,7 @@ public class Main {
 
     private static void initEmployees() {
         for (int i = 1; employees.length > i; i++) {
-            String fullName = surnames[random.nextInt(0)] + " " +
+            String fullName = surnames[random.nextInt(0, surnames.length)] + " " +
                     names[random.nextInt(0, names.length)] + " " +
                     patronymic[random.nextInt(0,patronymic.length)];
             employees[i] = new Employee(fullName, random.nextInt(1,6), random.nextInt(50_000,100_000));
