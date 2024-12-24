@@ -14,7 +14,7 @@ public class Main {
     private final static Employee[] employees = new Employee[10];
 
     private static void initEmployees() {
-        for (int i = 1; employees.length > i; i++) {
+        for (int i = 0; i < employees.length; i++) {
             String fullName = surnames[random.nextInt(0, surnames.length)] + " " +
                     names[random.nextInt(0, names.length)] + " " +
                     patronymic[random.nextInt(0,patronymic.length)];
